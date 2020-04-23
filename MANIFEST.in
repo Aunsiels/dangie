@@ -1,0 +1,5 @@
+include dangie/logging.cfg 
+graft dangie/templates
+graft dangie/static
+graft dangie/functions
+global-exclude *.pyc
