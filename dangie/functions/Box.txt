@@ -1,0 +1,5 @@
+getId: hasId
+getSinger: hasId-, *, singer
+getAlbum: singer-, *, onAlbum
+getReleaseDate: onAlbum-, released
+query: released

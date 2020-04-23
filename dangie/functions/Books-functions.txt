@@ -1,0 +1,90 @@
+query: published
+
+GetAuthorInfoByName1: hasAuthorId
+
+GetAuthorInfoByName2: bornOnDate
+
+GetAuthorInfoByName3: hasGender
+
+GetAuthorInfoByName4: hasWonPrize
+
+GetAuthorInfoByName5: isCitizenOf
+
+GetAuthorInfoByName6: graduatedFrom
+
+GetAuthorInfoByName7: livesIn
+
+GetAuthorInfoByName1: hasAuthorId
+
+GetBookInfoByTitle1: hasISBN
+
+GetBookInfoByTitle2: isTitled
+
+GetBookInfoByTitle3: wrote-
+
+GetBookInfoByTitle4: published-
+
+GetBooksByAuthorID1: hasAuthorId-, *, wrote, hasBookId
+
+GetBooksByAuthorID2: hasAuthorId-, *, wrote, isTitled
+
+GetBooksByAuthorID3: hasAuthorId-, *, wrote, hasISBN
+
+GetPublisherAuthors1: published, *, wrote-
+
+GetBookInfoByName1: hasBookId
+
+GetBookInfoByName2: wrote-, hasAuthorId
+
+GetBookInfoByName3: wrote-, hasWonPrize
+
+GetBookInfoByName4: isTitledOf
+
+GetBookInfoByName5: publishedOnDate
+
+GetAuthorInfoById1: hasAuthorId-, *, bornOnDate
+
+GetAuthorInfoById2: hasAuthorId-, *, hasGender
+
+GetAuthorInfoById3: hasAuthorId-, *, hasWonPrize
+
+GetAuthorInfoById4: hasAuthorId-, *, isCitizenOf
+
+GetAuthorInfoById5: hasAuthorId-, *, graduatedFrom
+
+GetAuthorInfoById6: hasAuthorId-, *, livesIn
+
+GetBookInfoByISBN1: hasISBN-, *, wrote-
+
+GetBookInfoByISBN2: hasISBN-, *, published-
+
+GetBookInfoById1: hasBookId-, wrote-, hasAuthorId
+
+GetBookInfoById2: hasBookId-, wrote-, hasWonPrize
+
+GetBookInfoById3: hasBookId-, isTitledOf
+
+GetBookInfoById4: hasBookId-, publishedOnDate
+
+GetBookInfoByISBN1: hasISBN-, *, hasBookId
+
+GetBookInfoByISBN2: hasISBN-, *, wrote-, hasAuthorId
+
+GetBookInfoByISBN3: hasISBN-, *, wrote-, hasWonPrize
+
+GetBookInfoByISBN4: hasISBN-, *, isTitledOf
+
+GetBookInfoByISBN5: hasISBN-, *, publishedOnDate
+
+GetBooksByName1: isTitled, *, wrote-, hasAuthorId
+
+GetBooksByName2: isTitled, *, hasBookId
+
+GetBooksByName3: isTitled, *, hasISBN
+
+GetBooksByAuthorName1: wrote, hasISBN
+
+GetBooksByAuthorName2: wrote, isTitled
+
+GetBooksByAuthorName3: wrote, published-
+

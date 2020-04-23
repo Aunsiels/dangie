@@ -1,0 +1,4 @@
+flask
+pyformlang
+networkx
+flask_wtf

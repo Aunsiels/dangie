@@ -1,0 +1,14 @@
+GetMovieInfoByName1: isTitled-, directed-
+
+GetMovieInfoByName2: isTitled-, isOfGenre
+
+GetMovieInfoByName3: isTitled-, actedIn-
+
+GetMoviesByActorName1: actedIn, *, isTitled
+
+GetMoviesByActorName2: actedIn, *, directed-
+
+GetMoviesByActorName3: actedIn, *, isOfGenre
+
+query: isTitled-
+

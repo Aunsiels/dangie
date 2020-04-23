@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Dangie Demo</title>
+<meta charset=utf-8>
+    <style>
+        body {
+            max-width: 40em;
+            margin:auto;
+            border: 2em solid #EEEEEE;
+            padding: 1em;
+        }
+		.button {
+		  border: none;
+		  padding: 4px 8px;
+		  cursor: pointer;
+		  background: lightgray;
+          font-size: 1em;
+          margin: 0.5em;
+         box-shadow: 2px 2px darkgray;
+         border-radius: 1em;
+		}
+    </style>
+</head>
+<body id=main>
+    <h1 style="text-align:center">Graphical Rewriting Demo</h1>
+    <center>
+        {% if svg is none %}
+          <img id="planCanvas" src="{{ url_for('static', filename='empty.svg') }}" style="width:80%;">
+        {% else %}
+          {{ svg|safe }}
+        {% endif %}
+    </center>
+    <br>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.functions.label }}<br>
+            {{ form.functions(size=32) }}<br>
+            {% for error in form.functions.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.search() }}</p>
+    </form>
+    <br>
+    <p>Or load existing examples:</p>
+    <ul>
+        <li>For
+            <a
+                    href="{{ url_for('homepage.home', function_name='functions.txt') }}">birthday
+                </a> (example from our paper)</li>
+        <li>With a
+            <a
+                    href="{{ url_for('homepage.home', function_name='Box.txt') }}">star shape
+            </a></li>
+        <li>For
+            <a
+                    href="{{ url_for('homepage.home', function_name='Movies-functions.txt') }}">Movies
+            </a></li>
+        <li>For
+            <a
+                    href="{{ url_for('homepage.home', function_name='Music-functions.txt') }}">Music
+            </a></li>
+        <li>For
+            <a
+                    href="{{ url_for('homepage.home', function_name='Books-functions.txt') }}">Books
+            </a></li>
+    </ul>
+    <br>
+    <p>
+       The function definitions follow the structure: <b>functionName:
+    relation1, (*,) relation2, (*,), ..., relationk (,*) </b>.
+   <br>
+    The symbol <b>*</b> means that the second variable of the previous atom
+    is existential.
+    <br>
+    A user must specify a query following the structure: <b>query:
+        relation</b>.
+    </p>
+
+
+   <br><br>
+
+    <p>
+        To cite our <a href="https://arxiv.org/abs/2003.07316">paper</a>:
+        <br><br>
+       @misc{romero2020equivalent,<br>
+            title={Equivalent Rewritings on Path Views with Binding
+        Patterns},<br>
+            author={Julien Romero and Nicoleta Preda and Antoine Amarilli
+        and Fabian Suchanek},<br>
+            year={2020},<br>
+            eprint={2003.07316},<br>
+            archivePrefix={arXiv},<br>
+            primaryClass={cs.DB}
+        }
+        <br><br>
+        The code is available on Github: <a>...</a>
+    </p>
+
+</body>
+</html>

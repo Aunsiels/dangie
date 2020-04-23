@@ -1,0 +1,13 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMin meet' viewBox='0 0 400 200'>
+<defs><linearGradient id="r" >
+<stop offset="0" stop-color="red"/>
+<stop offset="0.333" stop-color="#ff0"/>
+<stop offset="0.5" stop-color="#0f0"/>
+<stop offset="0.666" stop-color="cyan"/>
+<stop offset="0.833" stop-color="blue"/>
+<stop offset="1" stop-color="#f0f"/>
+</linearGradient></defs>
+<text x='200' y='100' text-anchor="middle" fill="url(#r)" font-size='30'>Welcome to our demo!</text>
+<text x='200' y='150' text-anchor="middle" fill='black' font-size='10'>Edit
+    the functions below, then click "Find Plan"</text>
+</svg>

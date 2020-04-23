@@ -1,0 +1,3 @@
+query: hasBirthDate
+getParent : hasChild-
+getGCBD : hasChild, hasChild, hasBirthDate

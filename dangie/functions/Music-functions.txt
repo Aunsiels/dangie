@@ -1,0 +1,134 @@
+query: sang
+
+GetReleaseInfoByID1: hasReleaseId-, *, inLanguage
+
+GetReleaseInfoByID2: hasReleaseId-, *, released-, hasArtistId
+
+GetReleaseInfoByID3: hasReleaseId-, *, hasDiscNumber
+
+GetReleaseInfoByID4: hasReleaseId-, *, hasTrackNumber
+
+GetReleaseInfoByID5: hasReleaseId-, *, describes-
+
+GetReleaseInfoByID6: hasReleaseId-, *, happenedOnDate
+
+GetReleaseInfoByID7: hasReleaseId-, *, happenedIn
+
+GetReleaseInfoByID1: hasReleaseId-, *, released-
+
+GetReleaseInfoByID2: hasReleaseId-, *, producedIn
+
+GetReleaseInfoByID3: hasReleaseId-, *, createdOnDate
+
+GetReleaseInfoByID4: hasReleaseId-, *, contains, hasDuration
+
+GetCollaboratorsByID1: hasArtistId-, *, isMemberOf, hasArtistId
+
+GetArtistInfoByName1: hasName-, *, means
+
+GetArtistInfoByName2: hasName-, *, hasRelease, hasReleaseId
+
+GetArtistInfoByName3: hasName-, *, hasRelease, createdOnDate
+
+GetCollaborationInfoByID1: hasArtistId-, *, isMemberOf-, hasArtistId
+
+GetTracksByReleaseID1: hasTrackId-, *, inLanguage
+
+GetTracksByReleaseID2: hasTrackId-, *, isMemberOf-, hasTrackId
+
+GetTracksByReleaseID3: hasTrackId-, *, isMemberOf-, hasDuration
+
+GetLyricInfoByArtistTrackName1: hasLyrics, describes-
+
+GetTrackInfoByName1: hasTrackId
+
+GetTrackInfoByName2: hasDuration
+
+GetTrackInfoByName3: sang-
+
+GetTrackInfoByName4: isMemberOf
+
+GetTrackInfoByName5: hasValue
+
+GetTrackInfoByID1: hasTrackId-, *, hasDuration
+
+GetTrackInfoByID2: hasTrackId-, *, sang-
+
+GetTrackInfoByID3: hasTrackId-, *, isMemberOf
+
+GetTrackInfoByID4: hasTrackId-, *, hasValue
+
+GetReleaseInfoByName1: released-
+
+GetReleaseInfoByName2: describes-
+
+GetReleaseInfoByName3: happenedOnDate
+
+GetArtistInfoByName1: hasArtistId
+
+GetArtistInfoByName2: bornOnDate
+
+GetArtistInfoByName3: diedOnDate
+
+GetReleaseInfoByID1: hasReleaseId-, *, released-
+
+GetReleaseInfoByID2: hasReleaseId-, *, describes-
+
+GetReleaseInfoByID3: hasReleaseId-, *, happenedOnDate
+
+GetTrackInfoByID1: hasTrackId-, *, describes-
+
+GetTrackInfoByID2: hasTrackId-, *, hasDuration
+
+GetTrackInfoByID3: hasTrackId-, *, sang-, hasArtistId
+
+GetTrackInfoByID4: hasTrackId-, *, isMemberOf, hasAlbumId
+
+GetRelativesByID1: hasArtistId-, *, hasSibling, hasArtistId
+
+GetRelativesByID2: hasArtistId-, *, isMarriedTo, hasArtistId
+
+GetRelativesByID3: hasArtistId-, *, marriedOn
+
+GetRelativesByID4: hasArtistId-, *, divorcedOn
+
+GetRelativesByID5: hasArtistId-, *, hasChild, hasArtistId
+
+GetArtistInfoByName1: hasArtistId
+
+GetArtistInfoByName2: describes-
+
+GetReleaseInfoByTitle1: hasReleaseId
+
+GetReleaseInfoByTitle2: inLanguage
+
+GetReleaseInfoByTitle3: released-
+
+GetArtistInfoByID1: hasArtistId-, *, bornOnDate
+
+GetArtistInfoByID2: hasArtistId-, *, diedOnDate
+
+GetArtistInfoByID3: hasArtistId-, *, rated
+
+GetArtistInfoByID4: hasArtistId-, *, describes-
+
+GetReleasesByArtistID1: hasArtistId-, *, released, hasReleaseId
+
+GetReleasesByArtistID2: hasArtistId-, *, released, inLanguage
+
+GetTrackInfoByName1: describes-
+
+GetTrackInfoByName2: sang-
+
+GetArtistsByReleaseID1: hasReleaseId-, *, inLanguage
+
+GetArtistsByReleaseID2: hasReleaseId-, *, sang-
+
+GetArtistsByReleaseID3: hasReleaseId-, *, lyricsBy
+
+GetArtistsByReleaseID4: hasReleaseId-, *, produced-
+
+GetArtistInfoByID1: hasArtistId-, *, describes-
+
+GetTracksByArtistID1: hasArtistId-, *, sang
+
