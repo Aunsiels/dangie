@@ -24,7 +24,7 @@ SPEED = 1
 
 class SVGPlanWriter:
 
-    def __init__(self, functions_as_text):
+    def __init__(self, functions_as_text, name="latest"):
         self.x = 0
         self.y = 0
         self.direction = 0
@@ -37,6 +37,7 @@ class SVGPlanWriter:
         self.min_x = 0
         self.min_y = 0
         self.load_functions(functions_as_text)
+        self.name = name
 
     def load_functions(self, functions_as_text):
         functions = {}
@@ -85,7 +86,7 @@ class SVGPlanWriter:
                 counter += 1
             read_functions.append(read_function)
         solver = Solver(read_functions)
-        return solver.solve(self.query)
+        return solver.solve(self.query, filename=self.name)
 
     # Creates the SVG file
     def save_svg(self, plan):
@@ -316,6 +317,6 @@ def inverse(relation):
     return relation[:-1] if relation[-1] == '-' else relation + '-'
 
 
-def compute_plan(functions):
-    svg_plan_writer = SVGPlanWriter(functions)
+def compute_plan(functions, name="latest"):
+    svg_plan_writer = SVGPlanWriter(functions, name)
     return svg_plan_writer.run()

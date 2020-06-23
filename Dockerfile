@@ -2,6 +2,7 @@ from python:3
 
 RUN apt update -yqq \
     && apt upgrade -yqq \
+    && apt install graphviz -yqq \
     && rm -rf /var/lib/apt/lists/*  
 
 RUN pip3 install --upgrade pip

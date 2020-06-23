@@ -27,7 +27,19 @@
         {% if svg is none %}
           <img id="planCanvas" src="{{ url_for('static', filename='empty.svg') }}" style="width:80%;">
         {% else %}
+          <h2>Solution</h2>
           {{ svg|safe }}
+        {% endif %}
+    </center>
+
+    <center>
+        {% if svg_parse_tree is none %}
+          <br>
+        <h2>{{ message }}</h2>
+        {% else %}
+          <br>
+          <h2>Grammar Parsing Tree</h2>
+          {{ svg_parse_tree|safe }}
         {% endif %}
     </center>
     <br>
@@ -83,18 +95,31 @@
    <br><br>
 
     <p>
-        To cite our <a href="https://arxiv.org/abs/2003.07316">paper</a>:
+        This demo is based on our paper <a href="https://arxiv.org/abs/2003.07316">paper</a>:
         <br><br>
-       @inproceedings{romero2020equivalent,<br>
-            title={Equivalent Rewritings on Path Views with Binding
-        Patterns},<br>
-            author={Julien Romero and Nicoleta Preda and Antoine Amarilli
-        and Fabian Suchanek},<br>
-            year={2020},<br>
-            eprint={2003.07316},<br>
-            archivePrefix={arXiv},<br>
-            primaryClass={cs.DB}
-        }
+        @InProceedings{10.1007/978-3-030-49461-2_26,<br>
+            author="Romero, Julien<br>
+            and Preda, Nicoleta<br>
+            and Amarilli, Antoine<br>
+            and Suchanek, Fabian",<br>
+            editor="Harth, Andreas<br>
+            and Kirrane, Sabrina<br>
+            and Ngonga Ngomo, Axel-Cyrille<br>
+            and Paulheim, Heiko<br>
+            and Rula, Anisa<br>
+            and Gentile, Anna Lisa<br>
+            and Haase, Peter<br>
+            and Cochez, Michael",<br>
+            title="Equivalent Rewritings on Path Views with Binding Patterns",<br>
+            booktitle="The Semantic Web",<br>
+            year="2020",<br>
+            publisher="Springer International Publishing",<br>
+            address="Cham",<br>
+            pages="446--462",<br>
+            abstract="A view with a binding pattern is a parameterized query on a database. Such views are used, e.g., to model Web services. To answer a query on such views, the views have to be orchestrated together in execution plans. We show how queries can be rewritten into equivalent execution plans, which are guaranteed to deliver the same results as the query on all databases. We provide a correct and complete algorithm to find these plans for path views and atomic queries. Finally, we show that our method can be used to answer queries on real-world Web services.",<br>
+            isbn="978-3-030-49461-2"<br>
+            }<br>
+
         <br><br>
         The code is available on Github: <a
             href="https://github.com/Aunsiels/dangie">https://github.com/Aunsiels/dangie</a><br>
