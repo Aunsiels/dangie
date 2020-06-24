@@ -32,16 +32,16 @@
         {% endif %}
     </center>
 
-    <center>
         {% if svg_parse_tree is none %}
           <br>
         <h2>{{ message }}</h2>
         {% else %}
           <br>
-          <h2>Grammar Parsing Tree</h2>
-          {{ svg_parse_tree|safe }}
+          <details>
+              <summary style="text-align:center">Grammar Parsing Tree</summary>
+              {{ svg_parse_tree|safe }}
+          </details>
         {% endif %}
-    </center>
     <br>
 
     <form action="" method="post" novalidate>
@@ -60,8 +60,12 @@
     <ul>
         <li>For
             <a
-                    href="{{ url_for('homepage.home', function_name='functions.txt') }}">birthday
+                    href="{{ url_for('homepage.home', function_name='singer.txt') }}">singer
                 </a> (example from our paper)</li>
+        <li>For
+            <a
+                    href="{{ url_for('homepage.home', function_name='functions.txt') }}">birthday
+                </a></li>
         <li>With a
             <a
                     href="{{ url_for('homepage.home', function_name='Box.txt') }}">star shape
