@@ -19,9 +19,13 @@ def home():
     name = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
     svg_parse_tree = None
     message = ""
+    word = None
+    regex = None
     if form.validate_on_submit():
         row_functions = form.functions.data
-        svg = compute_plan(row_functions, name)
+        svg, solver = compute_plan(row_functions, name)
+        word = solver.word
+        regex = solver.regex
         if os.path.exists(name + ".svg"):
             with open(name + ".svg") as f:
                 svg_parse_tree = f.read()
@@ -45,4 +49,6 @@ def home():
                            form=form,
                            svg=svg,
                            svg_parse_tree=svg_parse_tree,
-                           message=message)
+                           message=message,
+                           word=word,
+                           regex=regex)

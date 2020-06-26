@@ -63,12 +63,12 @@ class SVGPlanWriter:
         self.result = ""
         if self.functions is None:
             return self.query
-        plan = self.make_plan()
+        plan, solver = self.make_plan()
         self.save_svg(plan)
         return self.result.replace("MAXX", str(self.max_x + 20 - self.min_x)) \
             .replace("MAXY", str(self.max_y + 10)) \
             .replace("MINX", str(self.min_x - 10)) \
-            .replace("MINY", str(0))
+            .replace("MINY", str(0)), solver
 
     def make_plan(self):
         read_functions = []
@@ -86,7 +86,7 @@ class SVGPlanWriter:
                 counter += 1
             read_functions.append(read_function)
         solver = Solver(read_functions)
-        return solver.solve(self.query, filename=self.name)
+        return solver.solve(self.query, filename=self.name), solver
 
     # Creates the SVG file
     def save_svg(self, plan):

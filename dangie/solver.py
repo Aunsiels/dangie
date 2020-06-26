@@ -11,6 +11,8 @@ from dangie.function import Function
 class Solver:
 
     def __init__(self, functions, uids=None, relations=None):
+        self.word = None
+        self.regex = ""
         self.functions = functions
         linear_paths = utils.get_all_linear_paths(functions)
         self.uids = uids
@@ -27,6 +29,7 @@ class Solver:
         query = Function()
         query.add_atom(query_relation, "x", "y")
         deter = utils.get_dfa_from_functions(self.functions, query_relation)
+        self.regex = str(deter.to_regex())
         cfg = query.get_longest_query_grammar(self.relations, self.uids)
         cfg_inter = cfg.intersection(deter)
         if not cfg_inter.is_empty():
@@ -44,6 +47,7 @@ class Solver:
                 os.system("dot -Tsvg " + filename + ".dot -o " +
                           filename + ".svg")
                 os.system("rm " + filename + ".dot")
+                self.word = ".".join([x.value for x in word])
                 return utils.get_translation(self.fst, word)
         return None
 
