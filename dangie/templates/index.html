@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Dangie Demo</title>
+<title>Query Rewritings on Path Views with Binding Patterns</title>
 <meta charset=utf-8>
     <style>
         body {
@@ -13,16 +13,103 @@
 		  border: none;
 		  padding: 4px 8px;
 		  cursor: pointer;
+		   text-decoration: none;
+		   color: black;
+		   background-color: lightgray;
 		  background: lightgray;
           font-size: 1em;
           margin: 0.5em;
-         box-shadow: 2px 2px darkgray;
-         border-radius: 1em;
+		}
+		.popup { display: none; }
+		.menu { position: relative }
+		.menu:hover .popup {
+		   display: block;
+		   position: absolute;
+		   top: 1.3em;
+		   left: 0.5em;
+		   text-decoration: none;
+		   color: black;
+		   background-color: lightgray;
+		   width: 30em;
+		   padding: 2em;
+		   border-top: white 0.5em solid;
+		}
+		ul { margin: 0em; padding: 0em; padding-left: 1em;}
+		p {
+		  margin: 0em;
+		  margin-top: 1em;
+		}
+		blockquote {
+		  margin: 1em;
+		  margin-right: 0em;
+		  font-style: italic;
+		}
+		details {
+		 background: lightgray;
+		 margin-left: 1.5em;
+		}
+		summary {
+		 background: white;
+		 margin-left: -1.5em;
 		}
     </style>
 </head>
 <body id=main>
-    <h1 style="text-align:center">Graphical Rewriting Demo</h1>
+    <h1 style="text-align:center">Query Rewritings on Path Views<br>with Binding Patterns</h1>
+
+    <form name="submitform" action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.functions.label }}<br>
+            {{ form.functions(size=32) }}<br>
+            {% for error in form.functions.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+		<span class=menu><span class=button>Help</span><div class=popup>
+       Each function has to be defined by a line of the following form:
+	   <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;functionName: relation<sub>1</sub>, (*,) relation<sub>2</sub>, (*,), ..., relation<sub>k</sub> (,*) </blockquote>
+    The symbol <b>*</b> means that the second variable of the previous atom
+    is existential.
+    <p>
+    The query is defined by a line of the following form:<blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query:
+        relation</blockquote>
+    </div></span>
+<span class=menu>
+<span class=button>Examples</span><div class=popup>
+       <ul>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='singer.txt') }}">Singer
+                </a> (example from our paper)</li>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='functions.txt') }}">Birthday
+                </a></li>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='Box.txt') }}">Star shape
+            </a></li>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='Movies-functions.txt') }}">Movies
+            </a></li>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='Music-functions.txt') }}">Music
+            </a></li>
+        <li>
+            <a
+                    href="{{ url_for('homepage.home', function_name='Books-functions.txt') }}">Books
+            </a></li>
+    </ul>
+	</div>
+	</span>
+	<span class=button onclick="submitform.submit()" style="color:green">Find
+        Plan</span>
+    </form>
+
+
     <center>
         {% if svg is none %}
           <img id="planCanvas" src="{{ url_for('static', filename='empty.svg') }}" style="width:80%;">
@@ -32,71 +119,40 @@
         {% endif %}
     </center>
 
-    <center>
+    {% if regex is not none %}
+	Formal computation:
+          <details>
+              <summary>Word</summary>
+              {{ word }}
+          </details>
+
+          <details>
+              <summary>Context-free grammar</summary>
         {% if svg_parse_tree is none %}
-          <br>
-        <h2>{{ message }}</h2>
-        {% else %}
-          <br>
-          <h2>Grammar Parsing Tree</h2>
-          {{ svg_parse_tree|safe }}
+		  {{ message }}
+		{% else %}
+              {{ svg_parse_tree|safe }}
         {% endif %}
-    </center>
-    <br>
+          </details>
+          <details>
+              <summary>Regular expression</summary>
+              {{ regex }}
+          </details>
+    {% endif %}
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.functions.label }}<br>
-            {{ form.functions(size=32) }}<br>
-            {% for error in form.functions.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.search() }}</p>
-    </form>
-    <br>
-    <p>Or load existing examples:</p>
-    <ul>
-        <li>For
-            <a
-                    href="{{ url_for('homepage.home', function_name='functions.txt') }}">birthday
-                </a> (example from our paper)</li>
-        <li>With a
-            <a
-                    href="{{ url_for('homepage.home', function_name='Box.txt') }}">star shape
-            </a></li>
-        <li>For
-            <a
-                    href="{{ url_for('homepage.home', function_name='Movies-functions.txt') }}">Movies
-            </a></li>
-        <li>For
-            <a
-                    href="{{ url_for('homepage.home', function_name='Music-functions.txt') }}">Music
-            </a></li>
-        <li>For
-            <a
-                    href="{{ url_for('homepage.home', function_name='Books-functions.txt') }}">Books
-            </a></li>
-    </ul>
-    <br>
-    <p>
-       The function definitions follow the structure: <b>functionName:
-    relation1, (*,) relation2, (*,), ..., relationk (,*) </b>.
-   <br>
-    The symbol <b>*</b> means that the second variable of the previous atom
-    is existential.
-    <br>
-    A user must specify a query following the structure: <b>query:
-        relation</b>.
-    </p>
+<p>
+For more information:
+          <details>
+              <summary>Full paper</summary>
+<a href="https://julien-romero.fr">Julien Romero</a>, <a href="http://preda.fr">Nicoleta Preda</a>, <a href="http://a3nm.net/">Antoine Amarilli</a>, <a href="https://suchanek.name">Fabian M. Suchanek</a>:
+			    		<br/>
+		    			“Equivalent Rewritings on Path Views with Binding Patterns”
+			    		(<a href="https://suchanek.name/work/publications/eswc-2020-dangie.pdf">pdf</a>)
+			    		<br/>Full paper at the <a href="https://2020.eswc-conferences.org/">Extended Semantic Web Conference</a>
+		    				 (ESWC)
 
-
-   <br><br>
-
-    <p>
-        This demo is based on our <a href="https://arxiv.org/abs/2003.07316">paper</a>:
-    </p>
+		    			, 2020<br/>
+						<p>
     <pre>
 @InProceedings{10.1007/978-3-030-49461-2_26,
     author="Romero, Julien
@@ -120,15 +176,13 @@
     isbn="978-3-030-49461-2"
     }
     </pre>
-    <p>
-        The code is available on Github: <a
+
+          </details>
+ <details><summary>Code</summary>       The code is available on Github: <a
             href="https://github.com/Aunsiels/dangie">https://github.com/Aunsiels/dangie</a><br>
-        The code is based on <a
+        We use <a
             href="https://github.com/Aunsiels/query_rewriting">https://github.com/Aunsiels/query_rewriting</a> and <a
             href="https://pyformlang.readthedocs.io/en/latest/">Pyformlang</a>.
-    </p>
-
-    <br>
-
+</details>
 </body>
 </html>

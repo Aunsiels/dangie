@@ -1,5 +1,6 @@
 import os
 import random
+import re
 import string
 
 from flask import render_template, request
@@ -7,6 +8,8 @@ from flask import render_template, request
 from dangie.demo import compute_plan
 from dangie.homepage.blueprint import BP
 from dangie.models import PlanForm
+
+REGEX = re.compile(r'(<ellipse fill=")(none)("[^>]*>\n<text[^>]*>[^LBS])')
 
 
 @BP.route("/", methods=["GET", "POST"])
@@ -16,17 +19,23 @@ def home():
     name = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
     svg_parse_tree = None
     message = ""
+    word = None
+    regex = None
     if form.validate_on_submit():
         row_functions = form.functions.data
-        svg = compute_plan(row_functions, name)
+        svg, solver = compute_plan(row_functions, name)
+        word = solver.word
+        regex = solver.regex
         if os.path.exists(name + ".svg"):
             with open(name + ".svg") as f:
                 svg_parse_tree = f.read()
+                svg_parse_tree = REGEX.sub(r'\1green\3', svg_parse_tree)
             os.system("rm " + name + ".svg")
         else:
             message = "No Equivalent Rewriting Found."
     else:
-        function_name = request.args.get('function_name', None, type=str)
+        function_name = request.args.get('function_name', "singer.txt",
+                                         type=str)
         if (function_name is not None and "/" not in function_name and
                 function_name.endswith(".txt") and
                 function_name.count(".") == 1):
@@ -40,4 +49,6 @@ def home():
                            form=form,
                            svg=svg,
                            svg_parse_tree=svg_parse_tree,
-                           message=message)
+                           message=message,
+                           word=word,
+                           regex=regex)

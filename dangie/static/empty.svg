@@ -9,5 +9,5 @@
 </linearGradient></defs>
 <text x='200' y='100' text-anchor="middle" fill="url(#r)" font-size='30'>Welcome to our demo!</text>
 <text x='200' y='150' text-anchor="middle" fill='black' font-size='10'>Edit
-    the functions below, then click "Find Plan"</text>
+    the functions above, then click "Find Plan"</text>
 </svg>
