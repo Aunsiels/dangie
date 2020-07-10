@@ -2,7 +2,7 @@
 
 ## Website
 
-The website can be accessed at the url [https://dangie.r2.enst.fr](https://dangie.r2.enst.fr).
+The website can be accessed at the url [http://dangie.r2.enst.fr](http://dangie.r2.enst.fr).
 
 ## Run locally
 
